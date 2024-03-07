@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
         tiempo -= Time.deltaTime;
         timerEntero = System.Convert.ToInt32(tiempo);
         Ui.text = $"Vidas: {Vidas}\nTiempo: {timerEntero}\nPuntaje: {score}";
+        if (Vidas == 0 || timerEntero == 0)
+        {
+            pantallaFinal();
+        }
 
     }
     public void pausacion()
@@ -34,5 +39,14 @@ public class GameManager : MonoBehaviour
     public void reanudar()
     {
         Time.timeScale = 1;
+    }
+    public void cargarEscena(string Nombre)
+    {
+        SceneManager.LoadScene(Nombre);
+    }
+    public void pantallaFinal()
+    {
+        Time.timeScale = 0;
+        finDeJuego.Invoke();
     }
 }
