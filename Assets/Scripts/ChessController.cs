@@ -19,7 +19,7 @@ public class ChessController : MonoBehaviour
     private void Start()
     {
         InstantiateFood();
-        playerControllerScript = GetComponent<PlayerController>();
+        playerControllerScript = player.GetComponent<PlayerController>();
     }
 
     public void ChangeAvailableStatus()
@@ -44,8 +44,11 @@ public class ChessController : MonoBehaviour
 
     private void DestroyFood()
     {
+        int score;
         if (!isAvailable)
         {
+            score = instantiatedPrefab.GetComponent<FoodController>().foodValue;
+            playerControllerScript.AddScore(score);
             Destroy(instantiatedPrefab);
             ChangeAvailableStatus();
         }
@@ -53,7 +56,6 @@ public class ChessController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // playerControllerScript.AddScore(other.gameObject.);
         DestroyFood();
         StartCoroutine("GenerateFood");
     }
