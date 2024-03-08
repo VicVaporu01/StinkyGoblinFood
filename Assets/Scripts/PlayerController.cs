@@ -71,11 +71,19 @@ public class PlayerController : MonoBehaviour
                 {
                     Destroy(other.gameObject);
                 }
-
                 DeliverDish();
                 playerActualFoodScore = 0;
                 playerScore += 5;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Trash"))
+        {
+            DeliverDish();
+            playerActualFoodScore = 0;
         }
     }
 
@@ -109,4 +117,10 @@ public class PlayerController : MonoBehaviour
     {
         playerHeath -= 1;
     }
+
+    public bool GetHasDish()
+    {
+        return hasDish;
+    }
+    
 }
