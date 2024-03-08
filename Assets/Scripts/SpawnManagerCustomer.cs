@@ -97,7 +97,6 @@ public class SpawnManagerCustomer : MonoBehaviour
             Vector2 spawnPos = new Vector2(Table3.transform.position.x, Table3.transform.position.y);
             Instantiate(spawnCustumer[indexArray3], spawnPos, spawnCustumer[indexArray3].transform.rotation);
             Table3.GetComponent<TableOnly>().available = false;
-            
         }
         /////////
 
