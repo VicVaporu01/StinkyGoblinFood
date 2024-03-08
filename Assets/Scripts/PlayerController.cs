@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private float verticalInput, horizontalInput;
 
     private Rigidbody2D playerRB;
+    [SerializeField] private FoodSpawnManager foodSpawnManagerScript;
+
+    public int playerActualFoodScore;
 
     private void Start()
     {
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         MovePlayer();
+        Debug.Log("Food Score: " + playerActualFoodScore);
     }
 
     private void MovePlayer()
@@ -30,11 +34,8 @@ public class PlayerController : MonoBehaviour
                               new Vector2(horizontalInput, verticalInput) * (playerSpeed * Time.fixedDeltaTime));
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public void AddScore(int foodScore)
     {
-        if (other.gameObject.CompareTag("Food"))
-        {
-            Debug.Log("Collided with food: " + other.gameObject.name);
-        }
+        playerActualFoodScore += foodScore;
     }
 }
