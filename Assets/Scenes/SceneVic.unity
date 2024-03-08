@@ -2550,6 +2550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   foodSpawnManagerScript: {fileID: 1531681555}
+  fuerza: 0
   playerActualFoodScore: 0
 --- !u!212 &485234763
 SpriteRenderer:
@@ -4179,7 +4180,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2756063815619506548, guid: 5688bc8c94b051940b81d8f0c1cd00dc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 485234760}
+    - target: {fileID: 2756063815619506548, guid: 5688bc8c94b051940b81d8f0c1cd00dc, type: 3}
       propertyPath: playerControllerScript
+      value: 
+      objectReference: {fileID: 485234760}
+    - target: {fileID: 2756063816108457837, guid: 5688bc8c94b051940b81d8f0c1cd00dc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 485234760}
+    - target: {fileID: 2756063817062166046, guid: 5688bc8c94b051940b81d8f0c1cd00dc, type: 3}
+      propertyPath: player
       value: 
       objectReference: {fileID: 485234760}
     m_RemovedComponents: []
