@@ -5,10 +5,10 @@ using UnityEngine;
 public class TableOnly : MonoBehaviour
 {
     public bool available;
-    public GameObject circle;
-    public GameObject triangle;
-    public GameObject cansule;
-    // Start is called before the first frame update
+    //public GameObject circle;
+    //public GameObject triangle;
+    //public GameObject cansule;
+    //// Start is called before the first frame update
     void Start()
     {
         available = true;
@@ -30,10 +30,10 @@ public class TableOnly : MonoBehaviour
         //    available = false;
         //}
 
-        if(!circle)
-        {
-            available = true;
-        }
+        //if(!circle)
+        //{
+        //    available = true;
+        //}
 
     }
 }
