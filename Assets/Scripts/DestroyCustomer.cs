@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class DestroyCustomer : MonoBehaviour
 {
-    private Tables tables;//
+    private PlayerController playerControllerScript;
+
+    private Tables tables;
     private Rigidbody step;
     private GameObject Table;
     private GameObject Table2;
@@ -13,36 +15,29 @@ public class DestroyCustomer : MonoBehaviour
     private TableOnly asd;
     public float waitTime;
 
-    //public GameObject table;
-    // Start is called before the first frame update
     void Start()
     {
-        //table = table.tables;
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         step = GetComponent<Rigidbody>();
-        //table = tables.tables[0];
         asd = FindObjectOfType<TableOnly>();
         Table2 = GameObject.Find("Table2");
         Table3 = GameObject.Find("Table3");
-
     }
-                    
-    // Update is called once per frame
+
     void Update()
     {
-        
         DestroyCustomerd();
     }
 
     void DestroyCustomerd()
     {
         StartCoroutine(LifeCustomerdownRoutine());
-        //asd.GetComponent<TableOnly>().available=true;
     }
 
     IEnumerator LifeCustomerdownRoutine()
     {
-
         yield return new WaitForSeconds(waitTime);
         Destroy(gameObject);
+        playerControllerScript.LoseHealth();
     }
 }
