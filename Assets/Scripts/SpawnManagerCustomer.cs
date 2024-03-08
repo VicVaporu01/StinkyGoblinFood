@@ -29,7 +29,7 @@ public class SpawnManagerCustomer : MonoBehaviour
         Table1 = GameObject.Find("Table1");
         Table2 = GameObject.Find("Table2");
         Table3 = GameObject.Find("Table3");
-        
+        //tablesOnly = Table1.GetComponent<TableOnly>();
 
 
 
