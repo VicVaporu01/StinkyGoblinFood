@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector2 = System.Numerics.Vector2;
 
 public class ChessController : MonoBehaviour
 {
     [SerializeField] private bool isAvailable = true;
 
-    [SerializeField] private GameObject actualFood;
+    [SerializeField] private List<GameObject> actualFood;
     [SerializeField] private GameObject instantiatedPrefab;
     [SerializeField] private GameObject player;
 
@@ -31,7 +32,8 @@ public class ChessController : MonoBehaviour
     {
         if (isAvailable)
         {
-            instantiatedPrefab = Instantiate(actualFood, transform.position, transform.rotation);
+            int randomFood = Random.Range(0, actualFood.Count);
+            instantiatedPrefab = Instantiate(actualFood[randomFood], transform.position, transform.rotation);
             ChangeAvailableStatus();
         }
     }
@@ -56,7 +58,10 @@ public class ChessController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        DestroyFood();
-        StartCoroutine("GenerateFood");
+        if (!playerControllerScript.GetHasDish())
+        {
+            DestroyFood();
+            StartCoroutine("GenerateFood");
+        }
     }
 }
