@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerRB;
     private float verticalInput, horizontalInput;
-    private int playerActualFoodScore, countHasDish;
-    private bool hasDish = false;
+    [SerializeField] private int playerActualFoodScore, countHasDish, playerScore = 0, playerHeath = 5;
+    [SerializeField] private bool hasDish = false;
 
     private void Start()
     {
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
         if (countHasDish == 3)
         {
             hasDish = true;
-            Debug.Log(CategorizeActualFood());
         }
     }
 
@@ -50,28 +49,64 @@ public class PlayerController : MonoBehaviour
             countHasDish += 1;
         }
 
-        Debug.Log("Food Score: " + playerActualFoodScore);
+        // Debug.Log("Food Score: " + playerActualFoodScore);
     }
 
     private void DeliverDish()
     {
-        hasDish = false;
-        countHasDish = 0;
+        if (hasDish)
+        {
+            hasDish = false;
+            countHasDish = 0;
+        }
     }
 
-    private String CategorizeActualFood()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (playerActualFoodScore > 0)
+        if (other.gameObject.CompareTag("Customer"))
         {
-            return "Tiene comida deliciona.";
+            if (playerActualFoodScore == -1)
+            {
+                if (hasDish)
+                {
+                    Destroy(other.gameObject);
+                }
+
+                DeliverDish();
+                playerActualFoodScore = 0;
+                playerScore += 5;
+            }
         }
-        else if (playerActualFoodScore == -1)
-        {
-            return "Tiene comida asquerosa";
-        }
-        else
-        {
-            return "Tiene comida super Asquerosa";
-        }
+    }
+
+    // private String CategorizeActualFood()
+    // {
+    //     if (playerActualFoodScore > 0)
+    //     {
+    //         return "Tiene comida deliciona.";
+    //     }
+    //     else if (playerActualFoodScore == -1)
+    //     {
+    //         return "Tiene comida asquerosa";
+    //     }
+    //     else
+    //     {
+    //         return "Tiene comida super Asquerosa";
+    //     }
+    // }
+
+    public int GetScore()
+    {
+        return playerScore;
+    }
+
+    public int GetHealthPoints()
+    {
+        return playerHeath;
+    }
+
+    public void LoseHealth()
+    {
+        playerHeath -= 1;
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - BadFood
+  - Customer
   layers:
   - Default
   - TransparentFX
